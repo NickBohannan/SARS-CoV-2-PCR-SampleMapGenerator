@@ -45,3 +45,14 @@ body {
 .quadrant-title {
     text-align: center;
 }
+
+.select-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+select {
+    margin-top: 80px;
+    text-align: center;
+}
