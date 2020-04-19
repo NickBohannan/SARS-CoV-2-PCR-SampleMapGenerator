@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Reditus Sample Map Translator for QuantStudio 12K Flex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="header">Reditus PCR Sample Map Generator</div>
+    <div class="plate-container">
+        <div class="plate">
+            <div class="row">
+                <div class="quadrant" id="A">
+                    <div class="quadrant-title">Quadrant A</div>
+                    <select name="quadA">
+                        <% for (let i=0; i < exportedFiles.length; i++) { %>
+                            <option value="<%= exportedFiles[i] %>"><%= exportedFiles[i] %></option>
+                        <% } %>                   </select>
+                </div>
+                <div class="quadrant" id="B">
+                    <div class="quadrant-title">Quadrant B</div>
+                    <select name="quadB">
+                        <% for (let i=0; i < exportedFiles.length; i++) { %> 
+                            <option value="<%= exportedFiles[i] %>"><%= exportedFiles[i] %></option>
+                        <% } %>                   </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="quadrant" id="C">
+                    <div class="quadrant-title">Quadrant C</div>
+                    <select name="quadC">
+                        <% for (let i=0; i < exportedFiles.length; i++) { %>
+                            <option value="<%= exportedFiles[i] %>"><%= exportedFiles[i] %></option>
+                        <% } %>                   </select>
+                </div>
+                <div class="quadrant" id="D">
+                    <div class="quadrant-title">Quadrant D</div>
+                    <select name="quadD">
+                        <% for (let i=0; i < exportedFiles.length; i++) { %>
+                            <option value="<%= exportedFiles[i] %>"><%= exportedFiles[i] %></option>
+                        <% } %>                   </select>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

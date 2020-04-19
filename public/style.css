@@ -1,0 +1,47 @@
+body {
+    font-family: 'Exo 2', sans-serif;
+}
+
+.header {
+    font-size: 40px;
+    color: rgba(125, 166, 216, 1);
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.plate-container {
+    display: flex;
+    justify-content: center;
+}
+
+.plate {
+    z-index: 1;
+    width: 800px;
+    height: 500px;
+    border-radius: 30px;
+    border: 5px solid grey;
+    background-color: lightgray;
+}
+
+.row {
+    display: flex;
+    height: 250px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.quadrant {
+    z-index: 2;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 360px;
+    height: 220px;
+    border-radius: 30px;
+    border: 5px solid rgba(125, 166, 216, 1);
+    background-color: white;
+}
+
+.quadrant-title {
+    text-align: center;
+}
