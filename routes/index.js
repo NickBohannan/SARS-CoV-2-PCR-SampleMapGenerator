@@ -16,10 +16,30 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
-    console.log(req.body)
 
+    let quadFiles = {}
+    let masterMap = 
     
-    for (const key in req.body) {}
+    for (const key in req.body) {
+        switch(key) {
+            case "quadA":
+                quadFiles.a = req.body.quadA
+                break
+            case "quadB":
+                quadFiles.b = req.body.quadB
+                break
+            case "quadC":
+                quadFiles.c = req.body.quadC
+                break
+            case "quadD":
+                quadFiles.d = req.body.quadD
+                break
+            default:
+                break
+        }
+    }
+
+    console.log(quadFiles)
 })
 
 module.exports = router
