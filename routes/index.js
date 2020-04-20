@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const fs = require('fs')
+const ligoParser = require('../ligoparser')
 
 router.get("/", async (req, res) => {
     let exportedFiles = await fs.readdir(process.env.EXPORT_DIRECTORY, (err, data) => {
@@ -18,7 +19,6 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
 
     let quadFiles = {}
-    let masterMap = 
     
     for (const key in req.body) {
         switch(key) {
@@ -39,7 +39,12 @@ router.post("/", async (req, res) => {
         }
     }
 
-    console.log(quadFiles)
+    let masterPairing = []
+    for (const key in quadFiles) {
+        ligoParser(process.env.TEST_PATH + quadFiles[key], key).forEach((e) => { masterPairing.push(e) })
+    }
+
+    res.send(masterPairing)
 })
 
 module.exports = router
