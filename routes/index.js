@@ -2,9 +2,12 @@ const express = require("express")
 const router = express.Router()
 const fs = require('fs')
 const ligoParser = require('../ligoparser')
+const createCsvWriter = require('csv-writer').createObjectCsvWriter
+
 
 router.get("/", async (req, res) => {
-    let exportedFiles = await fs.readdir(process.env.EXPORT_DIRECTORY, (err, data) => {
+
+    await fs.readdir(process.env.EXPORT_DIRECTORY, (err, data) => {
         if (err) {
             console.error(err)
         } else {
@@ -12,11 +15,14 @@ router.get("/", async (req, res) => {
                 exportedFiles: data
             })
         }
-        
     }) 
 })
 
 router.post("/", async (req, res) => {
+
+    if (req.body.filename == "") {
+        res.send("Please Click Back And Enter a Filename.")
+    }
 
     let quadFiles = {}
     
@@ -40,11 +46,40 @@ router.post("/", async (req, res) => {
     }
 
     let masterPairing = []
+
     for (const key in quadFiles) {
-        ligoParser(process.env.TEST_PATH + quadFiles[key], key).forEach((e) => { masterPairing.push(e) })
+        if (quadFiles[key] !== "empty") {
+            ligoParser(process.env.FILE_PATH + quadFiles[key], key).forEach((e) => { masterPairing.push(e) })
+        }
     }
 
-    res.send(masterPairing)
+    // res.send(masterPairing)
+    try {
+        const csvWriter = createCsvWriter({
+            path: process.env.MAPS + `\\${req.body.filename}.csv`,
+            header: [
+                {id: 'well', title: 'Well'},
+                {id: 'sampleName', title: 'Sample Name'},
+            ]
+        })
+    
+        const data = []
+    
+        masterPairing.forEach((e) => {
+            data.push({
+                well: e[0],
+                sampleName: e[1]
+            })
+        })
+    
+        await csvWriter.writeRecords(data)
+
+        res.send("CSV Generated... Please Close Tab.")
+
+    } catch(err) {
+        console.error(err)
+    }
+
 })
 
 module.exports = router

@@ -3,14 +3,17 @@ const fs = require('fs')
 const translator = require('./translator')
 
 module.exports = (file, quadrant) => {
+
     let ligoExport = XLSX.readFile(file)
     let sheet1 = ligoExport.Sheets[ligoExport.SheetNames[0]]
     let patientCounter = 0
     let finalPairing = []
 
     function parseSheet(currentField) {
+
         let fieldNumber =  Number.parseInt(currentField.substring(1))
         let patientField = "B" + fieldNumber.toString()
+
         if (sheet1[currentField] == undefined) {
             return 1
         } else {
@@ -21,7 +24,7 @@ module.exports = (file, quadrant) => {
             let newWellWithHyphen = sheet1[currentField].v.replace(/ /g,'')
             let newWellWithoutHyphen = newWellWithHyphen.replace(/-/g,'')
             let translatedWell
-            
+
             switch(quadrant) {
                 case "a":
                     translatedWell = newWellWithoutHyphen
@@ -68,7 +71,6 @@ module.exports = (file, quadrant) => {
             finalPairing = finalPairing.slice(2)
             finalPairing.unshift(["A2", "negative"])
             finalPairing.unshift(["A1", "positive"])
-            finalPairing.unshift(["Well", "Sample Name"])
             break
         case "b":
             finalPairing = finalPairing.slice(2)
