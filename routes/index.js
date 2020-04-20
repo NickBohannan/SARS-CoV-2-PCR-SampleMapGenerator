@@ -16,7 +16,10 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
+    console.log(req.body)
+
     
+    for (const key in req.body) {}
 })
 
 module.exports = router

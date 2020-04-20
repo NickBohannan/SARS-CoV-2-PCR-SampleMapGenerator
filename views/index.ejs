@@ -7,54 +7,65 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <div class="header">Reditus PCR Sample Map Generator</div>
+    <div id="header-container">
+        <div class="header">Reditus PCR Sample Map Generator</div>
+    </div>
     <div class="plate-container">
-        <div class="plate">
-            <div class="row">
-                <div class="quadrant" id="A">
-                    <div class="quadrant-title">Quadrant A</div>
-                    <div class="select-container">
-                        <select name="quadA">
-                            <% for (let i=0; i < exportedFiles.length; i++) { %>
+        <form action="/" method="post" id="main">
+            <div class="plate">
+                <div class="row">
+                    <div class="quadrant" id="A">
+                        <div class="quadrant-title">Quadrant A</div>
+                        <div class="select-container">
+                            <select form="main" name="quadA">
+                                <option value="empty">empty</option>
+                                <% for (let i=0; i < exportedFiles.length; i++) { %>
                                 <option value="<%= exportedFiles[i] %>"><%= exportedFiles[i] %></option>
-                            <% } %>                   
-                        </select>
+                                <% } %>                   
+                            </select>
+                        </div>
+                    </div>
+                    <div class="quadrant" id="B">
+                        <div class="quadrant-title">Quadrant B</div>
+                        <div class="select-container">
+                            <select form="main" name="quadB">
+                                <option value="empty">empty</option>
+                                <% for (let i=0; i < exportedFiles.length; i++) { %> 
+                                <option value="<%= exportedFiles[i] %>"><%= exportedFiles[i] %></option>
+                                <% } %>                   
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="quadrant" id="B">
-                    <div class="quadrant-title">Quadrant B</div>
-                    <div class="select-container">
-                        <select name="quadB">
-                            <% for (let i=0; i < exportedFiles.length; i++) { %> 
+                <div class="row">
+                    <div class="quadrant" id="C">
+                        <div class="quadrant-title">Quadrant C</div>
+                        <div class="select-container">
+                            <select form="main" name="quadC">
+                                <option value="empty">empty</option>
+                                <% for (let i=0; i < exportedFiles.length; i++) { %>
                                 <option value="<%= exportedFiles[i] %>"><%= exportedFiles[i] %></option>
-                            <% } %>                   
-                        </select>
+                                <% } %>                   
+                            </select>
+                        </div>
+                    </div>
+                    <div class="quadrant" id="D">
+                        <div class="quadrant-title">Quadrant D</div>
+                        <div class="select-container">
+                            <select form="main" name="quadD">
+                                <option value="empty">empty</option>
+                                <% for (let i=0; i < exportedFiles.length; i++) { %>
+                                <option value="<%= exportedFiles[i] %>"><%= exportedFiles[i] %></option>
+                                <% } %>                   
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="quadrant" id="C">
-                    <div class="quadrant-title">Quadrant C</div>
-                    <div class="select-container">
-                        <select name="quadC">
-                            <% for (let i=0; i < exportedFiles.length; i++) { %>
-                                <option value="<%= exportedFiles[i] %>"><%= exportedFiles[i] %></option>
-                            <% } %>                   
-                        </select>
-                    </div>
-                </div>
-                <div class="quadrant" id="D">
-                    <div class="quadrant-title">Quadrant D</div>
-                    <div class="select-container">
-                        <select name="quadD">
-                            <% for (let i=0; i < exportedFiles.length; i++) { %>
-                                <option value="<%= exportedFiles[i] %>"><%= exportedFiles[i] %></option>
-                            <% } %>                   
-                        </select>
-                    </div>
-                </div>
+            <div id="submit-container">
+                <input type="submit" id="submit" value="Generate Sample Map" />
             </div>
-        </div>
+        </form>
     </div>
   </body>
 </html>
