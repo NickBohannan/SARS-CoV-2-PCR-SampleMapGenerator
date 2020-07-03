@@ -2,13 +2,16 @@ const XLSX = require('xlsx')
 const fs = require('fs')
 const translator = require('./translator')
 
+// ligoparser accepts an XLS file and a quadrant and creates an array of all the accession number and well location pairings.
 module.exports = (file, quadrant) => {
 
     let ligoExport = XLSX.readFile(file)
+
+    // sheet1 is the actual sheet in memory now
     let sheet1 = ligoExport.Sheets[ligoExport.SheetNames[0]]
-    let patientCounter = 0
     let finalPairing = []
 
+    // this recursive function takes a current field string (ex. "A1") and parses the well number out as well as accession number and adds it to the finalPairing array. Since it is recursive it will do this until it finds an empty row. The function is invoked right below.
     function parseSheet(currentField) {
 
         let fieldNumber =  Number.parseInt(currentField.substring(1))
@@ -25,6 +28,7 @@ module.exports = (file, quadrant) => {
             let newWellWithoutHyphen = newWellWithHyphen.replace(/-/g,'')
             let translatedWell
 
+            // this switch changes the well location based on which quadrant ligoParser is using
             switch(quadrant) {
                 case "a":
                     translatedWell = newWellWithoutHyphen
@@ -64,8 +68,10 @@ module.exports = (file, quadrant) => {
         }
     }
 
+    // invoked parseSheet
     parseSheet("A1")
    
+    // this switch adds the negative and positive controls to the finalPairing array.
     switch(quadrant) {
         case "a":
             finalPairing = finalPairing.slice(2)

@@ -1,3 +1,5 @@
+// this is the translator that translated well locations based on selected quadrant.
+
 module.exports = [
     ["A1", "A13", "I1", "I13"],
     ["A2", "A14", "I2", "I14"],
