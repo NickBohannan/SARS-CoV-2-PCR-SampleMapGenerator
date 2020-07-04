@@ -18,4 +18,4 @@ All site structure and layout is in .ejs format (server-side rendered HTML) unde
 
 The translator file is used in the parseSheet function in ligoparser.js to compare what well a patient would have given a particular quadrant.
 
-.gitignore is a file where you store the filenames of files you do NOT WANT UPLOADED TO GITHUB. THE .ENV FILE MUST NEVER BE UPLOADED TO A REPOSITORY.
+.gitignore is a file where you store the filenames of files you do NOT WANT UPLOADED TO GITHUB. Notice the .env file is on this list. THE .ENV FILE MUST NEVER BE UPLOADED TO A REPOSITORY.
