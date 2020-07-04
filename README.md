@@ -6,7 +6,7 @@ Function
 
 The Sample Map Translator takes an exported LigoLab XLS(s) and parses and translates them to a CSV for use in the RT-PCR QuantStudio machines. The user selects all XLS files in the UI for the proper quadrant, and the program generates a CSV of all patient accession numbers and their well locations.
 
-Notice the directory above: 
+Notice the directory above:
 
 The entry file is index.js in the root folder. You can change port in this file.
 
