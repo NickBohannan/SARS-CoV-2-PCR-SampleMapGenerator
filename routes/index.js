@@ -41,11 +41,11 @@ router.post("/", async (req, res) => {
         if (quadFiles[key] !== "empty") {
 
             // this line is kind of a doozie so let's break it down: 
+            ligoParser(process.env.FILE_PATH + quadFiles[key], key).forEach((e) => { masterPairing.push(e) })
 
             // you are invoking the ligoparser function that takes a file at a location on the server (the XLS file) as well as a quadrant. this is the first parameter of the ligoparser function (notice the quadFiles[key] is going to be your quadFiles.a or b etc here as the keys are a b c d from the switch above this loop. notice that key is also the source of the quadrant, the second parameter)
 
             // lastly, notice how there is a forEach after every ligoparser function. this means it takes the finalPairing array that is returned from the function, and for each element in that array, it does something. in this case it pushes to another array, the masterPairing array. This is an array of well locations in ALL quadrants. remember the finalPairing array is from one quadrant only.  
-            ligoParser(process.env.FILE_PATH + quadFiles[key], key).forEach((e) => { masterPairing.push(e) })
         }
     }
 
