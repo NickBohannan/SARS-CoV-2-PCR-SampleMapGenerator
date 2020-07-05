@@ -25,27 +25,13 @@ router.post("/", async (req, res) => {
     if (req.body.filename == "") {
         res.send("Please Click Back And Enter a Filename.")
     }
-
-    let quadFiles = {}
     
     // this might look redundant, but the body object has more than just quad information, so we need to feed the quad information into its own limited object to do a for in statement
-    for (const key in req.body) {
-        switch(key) {
-            case "quadA":
-                quadFiles.a = req.body.quadA
-                break
-            case "quadB":
-                quadFiles.b = req.body.quadB
-                break
-            case "quadC":
-                quadFiles.c = req.body.quadC
-                break
-            case "quadD":
-                quadFiles.d = req.body.quadD
-                break
-            default:
-                break
-        }
+    let quadFiles = {
+        a: req.body.quadA,
+        b: req.body.quadB,
+        c: req.body.quadC,
+        d: req.body.quadD
     }
 
     let masterPairing = []
